@@ -4,3 +4,5 @@ ffmpeg-python
 pillow
 rarfile
 zipfile
+flask
+flask-cors
