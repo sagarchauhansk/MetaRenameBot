@@ -3,5 +3,4 @@ tgcrypto
 ffmpeg-python
 pillow
 rarfile
-flask
-flask-cors
+zipfile
