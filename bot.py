@@ -10,25 +10,29 @@ bot = Client(
 )
 
 @bot.on_message(filters.command("start"))
-def start(client, message):
-    message.reply_text(f"Hello {message.from_user.first_name}! I am a multi-utility bot. Use /help for commands.")
+async def start(client, message):
+    await message.reply_text(f"Hello {message.from_user.first_name}! I am a multi-utility bot. Use /help for commands.")
 
 @bot.on_message(filters.command("help"))
-def help(client, message):
-    message.reply_text("""
+async def help(client, message):
+    await message.reply_text("""
 Commands:
 🔹 /rename - Rename files
 🔹 /convert - Convert video format
 🔹 /compress - Zip files
 🔹 /extract - Extract ZIP/RAR files
-🔹 /watermark - Add watermark to images
 🔹 /metadata - Get file metadata
 🔹 /thumbnail - Extract video thumbnail
 🔹 /clear - Cleanup storage
     """)
 
-# Importing all handlers
-from handlers import rename, convert, compress, extract, watermark, metadata, thumbnail
+# Importing handlers correctly
+import handlers.rename
+import handlers.convert
+import handlers.compress
+import handlers.extract
+import handlers.metadata
+import handlers.thumbnail
 
 if __name__ == "__main__":
     bot.run()
