@@ -3,4 +3,3 @@ tgcrypto
 ffmpeg-python
 pillow
 rarfile
-zipfile
