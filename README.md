@@ -1,14 +1,23 @@
 # 🚀 Multi-Utility Telegram Bot 🤖
 
-A **powerful** and **feature-rich** Telegram bot for **file management, video conversion, compression, extraction, and more!** 🎯
+A **powerful** and **feature-rich** Telegram bot for **file management, renaming, video conversion, compression, extraction, and more!** 🎯
 
 ---
 
 ## 🌟 Features & Commands
 
+✅ **Force Subscription** – Requires users to join a channel before using the bot.
+   ```
+   Auto-Check on Start
+   ```
 ✅ **File Renaming** – Rename any uploaded file instantly.  
    ```
    /rename
+   ```
+✅ **Custom Thumbnails** – Users can set and retrieve thumbnails.
+   ```
+   /set_thumbnail
+   /show_thumbnail
    ```
 ✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).  
    ```
@@ -60,6 +69,7 @@ Before running the bot, set the following environment variables:
 API_ID = your_api_id
 API_HASH = your_api_hash
 BOT_TOKEN = your_bot_token
+FORCE_SUB_CHANNEL = your_channel
 ```
 
 You can set them in **Render**, **Heroku**, or export them in your terminal:
@@ -68,6 +78,7 @@ You can set them in **Render**, **Heroku**, or export them in your terminal:
 export API_ID="your_api_id"
 export API_HASH="your_api_hash"
 export BOT_TOKEN="your_bot_token"
+export FORCE_SUB_CHANNEL="your_channel"
 ```
 
 ---
