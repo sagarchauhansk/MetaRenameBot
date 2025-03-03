@@ -7,35 +7,35 @@ A **powerful** and **feature-rich** Telegram bot for **file management, video co
 ## 🌟 Features & Commands
 
 ✅ **File Renaming** – Rename any uploaded file instantly.
-   ```
+   ```bash
    /rename
    ```
 ✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).
-   ```
+   ```bash
    /convert
    ```
 ✅ **File Compression** – Zip multiple files together.
-   ```
+   ```bash
    /compress
    ```
 ✅ **File Extraction** – Extract ZIP & RAR files effortlessly.
-   ```
+   ```bash
    /extract
    ```
 ✅ **Image Watermarking** – Add a watermark text to your images.
-   ```
+   ```bash
    /watermark
    ```
 ✅ **Metadata Retrieval** – Get detailed metadata of any file.
-   ```
+   ```bash
    /metadata
    ```
 ✅ **Storage Cleanup** – Free up space by deleting old files.
-   ```
+   ```bash
    /clear
    ```
 ✅ **Video Thumbnail Generator** – Extract a thumbnail from videos.
-   ```
+   ```bash
    /thumbnail
    ```
 
@@ -63,24 +63,26 @@ python bot.py
 
 ---
 
-## ☁️ Deployment
+## ☁️ Deployment Options
 
+### 🚀 Deploy on Render (Easiest Way)
 <details>
-<summary>🚀 Deploy on Render (Easiest Way)</summary>
+<summary>Click to Expand</summary>
 
-1️⃣ Fork this repository & edit `bot.py` with your API credentials.
-2️⃣ Push your changes to GitHub.
-3️⃣ Create a **Render Web Service** and link your GitHub repository.
-4️⃣ Set the **Start Command** to:
+1️⃣ Fork this repository & edit `bot.py` with your API credentials.  
+2️⃣ Push your changes to GitHub.  
+3️⃣ Create a **Render Web Service** and link your GitHub repository.  
+4️⃣ Set the **Start Command** to:  
    ```bash
    bash start.sh
    ```
-5️⃣ Deploy & enjoy your bot! 🎉
+5️⃣ Deploy & enjoy your bot! 🎉  
 
 </details>
 
+### 🌍 Deploy on VPS / Cloud Server
 <details>
-<summary>🌍 Deploy on VPS / Cloud Server</summary>
+<summary>Click to Expand</summary>
 
 1️⃣ Install required packages:
    ```bash
@@ -90,7 +92,7 @@ python bot.py
    ```bash
    git clone https://github.com/sagarchauhansk/YourRepoName.git
    ```
-3️⃣ Go inside the folder:
+3️⃣ Navigate into the folder:
    ```bash
    cd YourRepoName
    ```
@@ -105,8 +107,9 @@ python bot.py
 
 </details>
 
+### ☁️ Deploy on Heroku
 <details>
-<summary>☁️ Deploy on Heroku</summary>
+<summary>Click to Expand</summary>
 
 1️⃣ Install Heroku CLI & login:
    ```bash
@@ -124,7 +127,7 @@ python bot.py
    ```bash
    git push heroku main
    ```
-5️⃣ Set required environment variables in Heroku dashboard.
+5️⃣ Set required environment variables in Heroku dashboard.  
 6️⃣ Start the bot:
    ```bash
    heroku ps:scale worker=1
