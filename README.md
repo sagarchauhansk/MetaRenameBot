@@ -4,12 +4,19 @@ A powerful Telegram bot for file management, video conversion, compression, extr
 
 ## 🌟 Features
 **File Renaming** – Rename any file easily.
+
 **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).
+
 **File Compression** – Compress multiple files into a ZIP.
+
 **File Extraction** – Extract ZIP & RAR files.
+
 **Image Watermarking** – Add text watermarks to images.
+
 **Metadata Retrieval** – Get detailed metadata of uploaded files.
+
 **Storage Cleanup** – Free up space by deleting old files.
+
 **Video Thumbnail Generator** – Extract thumbnails from videos.
 
 ## 🚀 Deployment
