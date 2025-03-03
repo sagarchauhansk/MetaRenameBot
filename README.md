@@ -39,9 +39,9 @@ A powerful Telegram bot for file management, video conversion, compression, extr
 
 ## 👤 Owner Details
 - **Owner:** Sagar Chauhan
-- **GitHub:** [YourGitHubProfile](https://github.com/sagarchauhansk)
-- **Telegram:** [@YourTelegramUsername](https://t.me/Pentasteradmin)
-- **Email:** your.email@example.com
+- **GitHub:** [MyGitHub](https://github.com/sagarchauhansk)
+- **Telegram:** [@Pentasteradmin](https://t.me/Pentasteradmin)
+- **Email:** sagarchauhansk@yandex.com
 
 ---
 ### 📢 Contributions & Issues
