@@ -1,7 +1,7 @@
 """
-📌 Multi-Utility File Bot with Metadata Editing & More
+📌 Multi-Utility File Bot with Metadata Editing
 🔗 GitHub: https://github.com/sagarchauhansk/MetaRenameBot
-🔹 Telegram: https://t.me/Pentasteradmin (Join to use the bot)
+🔹 Telegram: https://t.me/Pentasteradmin
 🛠️ Developed by: sagarchauhansk
 
 This bot can:
@@ -23,17 +23,17 @@ import shutil
 import traceback
 import json
 import threading
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ChatMember
 
 # 🎯 Bot Configuration
-API_ID = "your_api_id"
-API_HASH = "your_api_hash"
-BOT_TOKEN = "your_bot_token"
-FORCE_SUB_CHANNEL = "your_channel_username"
-WEB_SERVER_PORT = 5000
+API_ID = os.environ.get("API_ID")
+API_HASH = os.environ.get("API_HASH")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL")
+WEB_SERVER_PORT = int(os.environ.get("PORT", 5000))  # Render assigns a dynamic port
 
 # 🚀 Initialize Flask Web Server
 app = Flask(__name__)
@@ -61,10 +61,7 @@ async def start(client, message: Message):
         join_button = InlineKeyboardMarkup([
             [InlineKeyboardButton("🔔 Join Channel", url=f"https://t.me/{FORCE_SUB_CHANNEL}")]
         ])
-        await message.reply_text(
-            "🚀 You must join our Telegram channel before using me!",
-            reply_markup=join_button
-        )
+        await message.reply_text("🚀 You must join our Telegram channel before using me!", reply_markup=join_button)
         return
 
     await message.reply_text(
@@ -82,87 +79,31 @@ async def start(client, message: Message):
         disable_web_page_preview=True
     )
 
-# ✏️ Command: Rename File
-@bot.on_message(filters.command("rename"))
-async def rename(client, message: Message):
-    await message.reply_text("📂 Send me a file with the new filename in the caption.")
+# 📊 Command: Get & Edit File Metadata
+@bot.on_message(filters.command("metadata"))
+async def metadata(client, message: Message):
+    await message.reply_text("📁 Send me a file, and I'll provide a link to edit its metadata.")
 
-@bot.on_message(filters.document)
-async def handle_document(client, message: Message):
-    if message.caption and message.caption.startswith("rename:"):
-        new_name = message.caption.replace("rename:", "").strip()
-        file_path = await message.download(f"downloads/{new_name}")
-        await message.reply_document(file_path, caption=f"✅ Renamed to {new_name}")
-        os.remove(file_path)
-
-# 🎥 Command: Convert Video
-@bot.on_message(filters.command("convert"))
-async def convert(client, message: Message):
-    await message.reply_text("🎞️ Send me a video with the desired format (e.g., MP4, MKV) in the caption.")
-
-@bot.on_message(filters.video)
-async def handle_video(client, message: Message):
-    if message.caption and message.caption.startswith("convert:"):
-        format_type = message.caption.replace("convert:", "").strip().lower()
-        input_path = await message.download("downloads/")
-        output_path = input_path.rsplit(".", 1)[0] + f".{format_type}"
-
-        try:
-            ffmpeg.input(input_path).output(output_path).run()
-            await message.reply_video(output_path, caption=f"✅ Converted to {format_type}")
-        except Exception as e:
-            logging.error(f"Conversion Error: {str(e)}\n{traceback.format_exc()}")
-            await message.reply_text(f"❌ Conversion failed: {str(e)}")
-        finally:
-            os.remove(input_path)
-            os.remove(output_path)
-
-# 📦 Command: Compress Files
-@bot.on_message(filters.command("compress"))
-async def compress(client, message: Message):
-    await message.reply_text("🗜️ Send multiple files to compress.")
-
-@bot.on_message(filters.document)
-async def handle_compress(client, message: Message):
-    zip_filename = "downloads/compressed_files.zip"
-    os.makedirs("downloads", exist_ok=True)
-
-    try:
-        file_path = await message.download("downloads/")
-        with zipfile.ZipFile(zip_filename, "w") as zipf:
-            zipf.write(file_path, os.path.basename(file_path))
-        await message.reply_document(zip_filename, caption="📦 Here is your compressed file.")
-    finally:
-        os.remove(file_path)
-        os.remove(zip_filename)
-
-# 📂 Command: Extract ZIP/RAR Files
-@bot.on_message(filters.command("extract"))
-async def extract(client, message: Message):
-    await message.reply_text("📤 Send me a ZIP or RAR file to extract.")
-
-@bot.on_message(filters.document)
-async def handle_extract(client, message: Message):
+@bot.on_message(filters.document | filters.video | filters.photo)
+async def handle_metadata(client, message: Message):
     file_path = await message.download("downloads/")
-    extract_folder = "downloads/extracted_files"
-    os.makedirs(extract_folder, exist_ok=True)
+    file_name = os.path.basename(file_path)
 
     try:
-        if file_path.endswith(".zip"):
-            with zipfile.ZipFile(file_path, 'r') as zip_ref:
-                zip_ref.extractall(extract_folder)
-        elif file_path.endswith(".rar") and rarfile.is_rarfile(file_path):
-            with rarfile.RarFile(file_path, 'r') as rar_ref:
-                rar_ref.extractall(extract_folder)
+        metadata = ffmpeg.probe(file_path)
+        metadata_json = json.dumps(metadata, indent=4)
 
-        extracted_files = os.listdir(extract_folder)
-        for file in extracted_files:
-            extracted_file_path = os.path.join(extract_folder, file)
-            await message.reply_document(extracted_file_path, caption=f"📂 Extracted: {file}")
-            os.remove(extracted_file_path)
-    finally:
-        os.remove(file_path)
-        shutil.rmtree(extract_folder, ignore_errors=True)
+        # Save metadata to a file
+        metadata_file = f"downloads/{file_name}.json"
+        with open(metadata_file, "w") as f:
+            f.write(metadata_json)
+
+        # Send user a link to edit metadata
+        web_url = f"https://{os.environ.get('RENDER_EXTERNAL_HOSTNAME')}/edit_metadata/{file_name}"
+        await message.reply_text(f"🔗 [Click here](<{web_url}>) to edit metadata.", disable_web_page_preview=True)
+    except Exception as e:
+        logging.error(f"Metadata Error: {str(e)}\n{traceback.format_exc()}")
+        await message.reply_text("❌ Failed to extract metadata.")
 
 # 🌐 Web UI for Metadata Editing
 @app.route("/edit_metadata/<file_name>", methods=["GET"])
@@ -174,23 +115,23 @@ def edit_metadata(file_name):
     with open(metadata_file, "r") as f:
         metadata = json.load(f)
 
-    return jsonify(metadata)
+    return render_template("edit_metadata.html", metadata=json.dumps(metadata, indent=4), file_name=file_name)
 
 @app.route("/update_metadata/<file_name>", methods=["POST"])
 def update_metadata(file_name):
     metadata_file = f"downloads/{file_name}.json"
-    file_path = f"downloads/{file_name}"
-
-    if not os.path.exists(metadata_file) or not os.path.exists(file_path):
-        return jsonify({"error": "File not found"}), 404
+    if not os.path.exists(metadata_file):
+        return jsonify({"error": "Metadata file not found"}), 404
 
     new_metadata = request.json
+
+    # Save updated metadata
     with open(metadata_file, "w") as f:
         json.dump(new_metadata, f, indent=4)
 
     return jsonify({"message": "Metadata updated successfully!"})
 
-# 🚀 Run Flask Web Server
+# 🚀 Start Flask Web Server on Render Assigned Port
 def start_flask():
     app.run(host="0.0.0.0", port=WEB_SERVER_PORT, debug=True, use_reloader=False)
 
