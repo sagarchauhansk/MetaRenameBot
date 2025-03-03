@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Metadata</title>
+</head>
+<body>
+    <h2>Edit Metadata for {{ file_name }}</h2>
+    <form id="metadataForm">
+        <textarea id="metadata" rows="20" cols="80">{{ metadata | tojson }}</textarea>
+        <br>
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <script>
+        document.getElementById("metadataForm").onsubmit = async function(event) {
+            event.preventDefault();
+            let updatedMetadata = document.getElementById("metadata").value;
+
+            let response = await fetch("/update_metadata/{{ file_name }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: updatedMetadata
+            });
+
+            let result = await response.json();
+            alert(result.message || "Failed to update metadata!");
+        };
+    </script>
+</body>
+</html>
