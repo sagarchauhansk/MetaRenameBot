@@ -6,14 +6,38 @@ A **powerful** and **feature-rich** Telegram bot for **file management, video co
 
 ## 🌟 Features & Commands
 
-✅ **File Renaming** – Rename any uploaded file instantly. `/rename`
-✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.). `/convert`
-✅ **File Compression** – Zip multiple files together. `/compress`
-✅ **File Extraction** – Extract ZIP & RAR files effortlessly. `/extract`
-✅ **Image Watermarking** – Add a watermark text to your images. `/watermark`
-✅ **Metadata Retrieval** – Get detailed metadata of any file. `/metadata`
-✅ **Storage Cleanup** – Free up space by deleting old files. `/clear`
-✅ **Video Thumbnail Generator** – Extract a thumbnail from videos. `/thumbnail`
+✅ **File Renaming** – Rename any uploaded file instantly.
+   ```
+   /rename
+   ```
+✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).
+   ```
+   /convert
+   ```
+✅ **File Compression** – Zip multiple files together.
+   ```
+   /compress
+   ```
+✅ **File Extraction** – Extract ZIP & RAR files effortlessly.
+   ```
+   /extract
+   ```
+✅ **Image Watermarking** – Add a watermark text to your images.
+   ```
+   /watermark
+   ```
+✅ **Metadata Retrieval** – Get detailed metadata of any file.
+   ```
+   /metadata
+   ```
+✅ **Storage Cleanup** – Free up space by deleting old files.
+   ```
+   /clear
+   ```
+✅ **Video Thumbnail Generator** – Extract a thumbnail from videos.
+   ```
+   /thumbnail
+   ```
 
 🚀 **Fast & Secure** | 🎨 **User-Friendly** | ⚡ **Lightweight & Efficient**
 
@@ -41,7 +65,9 @@ python bot.py
 
 ## ☁️ Deployment
 
-### 🚀 Deploy on **Render** (Easiest Way)
+<details>
+<summary>🚀 Deploy on Render (Easiest Way)</summary>
+
 1️⃣ Fork this repository & edit `bot.py` with your API credentials.
 2️⃣ Push your changes to GitHub.
 3️⃣ Create a **Render Web Service** and link your GitHub repository.
@@ -51,7 +77,11 @@ python bot.py
    ```
 5️⃣ Deploy & enjoy your bot! 🎉
 
-### 🌍 Deploy on **VPS / Cloud Server**
+</details>
+
+<details>
+<summary>🌍 Deploy on VPS / Cloud Server</summary>
+
 1️⃣ Install required packages:
    ```bash
    sudo apt update && sudo apt install python3 ffmpeg zip unzip -y
@@ -72,6 +102,35 @@ python bot.py
    ```bash
    python bot.py
    ```
+
+</details>
+
+<details>
+<summary>☁️ Deploy on Heroku</summary>
+
+1️⃣ Install Heroku CLI & login:
+   ```bash
+   heroku login
+   ```
+2️⃣ Create a new Heroku app:
+   ```bash
+   heroku create your-app-name
+   ```
+3️⃣ Add a Git remote:
+   ```bash
+   heroku git:remote -a your-app-name
+   ```
+4️⃣ Push the code to Heroku:
+   ```bash
+   git push heroku main
+   ```
+5️⃣ Set required environment variables in Heroku dashboard.
+6️⃣ Start the bot:
+   ```bash
+   heroku ps:scale worker=1
+   ```
+
+</details>
 
 ---
 
