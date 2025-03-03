@@ -6,36 +6,36 @@ A **powerful** and **feature-rich** Telegram bot for **file management, video co
 
 ## 🌟 Features & Commands
 
-✅ **File Renaming** – Rename any uploaded file instantly.
-   ```bash
+✅ **File Renaming** – Rename any uploaded file instantly.  
+   ```
    /rename
    ```
-✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).
-   ```bash
+✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).  
+   ```
    /convert
    ```
-✅ **File Compression** – Zip multiple files together.
-   ```bash
+✅ **File Compression** – Zip multiple files together.  
+   ```
    /compress
    ```
-✅ **File Extraction** – Extract ZIP & RAR files effortlessly.
-   ```bash
+✅ **File Extraction** – Extract ZIP & RAR files effortlessly.  
+   ```
    /extract
    ```
-✅ **Image Watermarking** – Add a watermark text to your images.
-   ```bash
+✅ **Image Watermarking** – Add a watermark text to your images.  
+   ```
    /watermark
    ```
-✅ **Metadata Retrieval** – Get detailed metadata of any file.
-   ```bash
+✅ **Metadata Retrieval** – Get detailed metadata of any file.  
+   ```
    /metadata
    ```
-✅ **Storage Cleanup** – Free up space by deleting old files.
-   ```bash
+✅ **Storage Cleanup** – Free up space by deleting old files.  
+   ```
    /clear
    ```
-✅ **Video Thumbnail Generator** – Extract a thumbnail from videos.
-   ```bash
+✅ **Video Thumbnail Generator** – Extract a thumbnail from videos.  
+   ```
    /thumbnail
    ```
 
@@ -50,39 +50,46 @@ A **powerful** and **feature-rich** Telegram bot for **file management, video co
 - **API_ID & API_HASH** from [my.telegram.org](https://my.telegram.org/apps) ✅
 - **BOT_TOKEN** from [@BotFather](https://t.me/BotFather) ✅
 
-### 🔹 **Install Dependencies**
-Run this command in the terminal:
-```bash
-pip install -r requirements.txt
+---
+
+## ⚙️ API Settings & Environment Variables
+
+Before running the bot, set the following environment variables:
+
+```
+API_ID = your_api_id
+API_HASH = your_api_hash
+BOT_TOKEN = your_bot_token
 ```
 
-### 🔹 **Run Locally**
+You can set them in **Render**, **Heroku**, or export them in your terminal:
+
 ```bash
-python bot.py
+export API_ID="your_api_id"
+export API_HASH="your_api_hash"
+export BOT_TOKEN="your_bot_token"
 ```
 
 ---
 
-## ☁️ Deployment Options
+## ☁️ Deployment
 
-### 🚀 Deploy on Render (Easiest Way)
 <details>
-<summary>Click to Expand</summary>
+<summary>🚀 Deploy on Render (Easiest Way)</summary>
 
 1️⃣ Fork this repository & edit `bot.py` with your API credentials.  
 2️⃣ Push your changes to GitHub.  
 3️⃣ Create a **Render Web Service** and link your GitHub repository.  
-4️⃣ Set the **Start Command** to:  
+4️⃣ Set the **Start Command** to:
    ```bash
    bash start.sh
    ```
-5️⃣ Deploy & enjoy your bot! 🎉  
+5️⃣ Deploy & enjoy your bot! 🎉
 
 </details>
 
-### 🌍 Deploy on VPS / Cloud Server
 <details>
-<summary>Click to Expand</summary>
+<summary>🌍 Deploy on VPS / Cloud Server</summary>
 
 1️⃣ Install required packages:
    ```bash
@@ -92,7 +99,7 @@ python bot.py
    ```bash
    git clone https://github.com/sagarchauhansk/YourRepoName.git
    ```
-3️⃣ Navigate into the folder:
+3️⃣ Go inside the folder:
    ```bash
    cd YourRepoName
    ```
@@ -107,9 +114,8 @@ python bot.py
 
 </details>
 
-### ☁️ Deploy on Heroku
 <details>
-<summary>Click to Expand</summary>
+<summary>☁️ Deploy on Heroku</summary>
 
 1️⃣ Install Heroku CLI & login:
    ```bash
@@ -168,4 +174,3 @@ python bot.py
 
 ### ⭐ **Support the Project**
 If you find this bot helpful, please give it a **star ⭐** on GitHub! It keeps me motivated to improve it further! 🚀🎉
-
