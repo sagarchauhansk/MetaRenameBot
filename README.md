@@ -38,9 +38,9 @@ A powerful Telegram bot for file management, video conversion, compression, extr
 4. Deploy on a server (VPS/Render/Heroku).
 
 ## 👤 Owner Details
-- **Owner:** Your Name
-- **GitHub:** [YourGitHubProfile](https://github.com/YourGitHubProfile)
-- **Telegram:** [@YourTelegramUsername](https://t.me/YourTelegramUsername)
+- **Owner:** Sagar Chauhan
+- **GitHub:** [YourGitHubProfile](https://github.com/sagarchauhansk)
+- **Telegram:** [@YourTelegramUsername](https://t.me/Pentasteradmin)
 - **Email:** your.email@example.com
 
 ---
