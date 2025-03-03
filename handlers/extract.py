@@ -4,12 +4,12 @@ import zipfile
 from pyrogram import Client, filters
 
 @Client.on_message(filters.command("extract") & filters.reply)
-def extract_file(client, message):
+async def extract_file(client, message):
     if not message.reply_to_message.document:
-        message.reply_text("⚠️ Reply to a ZIP or RAR file with /extract.")
+        await message.reply_text("⚠️ Reply to a ZIP or RAR file with `/extract`.")
         return
 
-    file_path = message.reply_to_message.download()
+    file_path = await message.reply_to_message.download()
     extract_path = os.path.splitext(file_path)[0]
 
     if file_path.endswith(".zip"):
@@ -19,8 +19,8 @@ def extract_file(client, message):
         with rarfile.RarFile(file_path, "r") as rar_ref:
             rar_ref.extractall(extract_path)
     else:
-        message.reply_text("⚠️ Unsupported format!")
+        await message.reply_text("⚠️ Unsupported format!")
 
-    message.reply_text(f"✅ Extracted to {extract_path}!")
+    await message.reply_text(f"✅ Extracted to `{extract_path}`!")
 
     os.remove(file_path)
