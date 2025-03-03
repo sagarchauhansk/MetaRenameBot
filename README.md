@@ -3,14 +3,14 @@
 A powerful Telegram bot for file management, video conversion, compression, extraction, and more!
 
 ## 🌟 Features
-✅ **File Renaming** – Rename any file easily.
-✅ **Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).
-✅ **File Compression** – Compress multiple files into a ZIP.
-✅ **File Extraction** – Extract ZIP & RAR files.
-✅ **Image Watermarking** – Add text watermarks to images.
-✅ **Metadata Retrieval** – Get detailed metadata of uploaded files.
-✅ **Storage Cleanup** – Free up space by deleting old files.
-✅ **Video Thumbnail Generator** – Extract thumbnails from videos.
+**File Renaming** – Rename any file easily.
+**Video Conversion** – Convert videos to different formats (MP4, MKV, etc.).
+**File Compression** – Compress multiple files into a ZIP.
+**File Extraction** – Extract ZIP & RAR files.
+**Image Watermarking** – Add text watermarks to images.
+**Metadata Retrieval** – Get detailed metadata of uploaded files.
+**Storage Cleanup** – Free up space by deleting old files.
+**Video Thumbnail Generator** – Extract thumbnails from videos.
 
 ## 🚀 Deployment
 
@@ -18,11 +18,7 @@ A powerful Telegram bot for file management, video conversion, compression, extr
 1. Fork this repository & edit `bot.py` with your API credentials.
 2. Create a `requirements.txt` file:
    ```
-   pyrogram
-tgcrypto
-ffmpeg-python
-pillow
-rarfile
+   pyrogram tgcrypto ffmpeg-python pillow rarfile
    ```
 3. Create a `start.sh` file:
    ```bash
